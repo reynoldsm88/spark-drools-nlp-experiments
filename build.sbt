@@ -6,6 +6,8 @@ name := "spark-drools-experiments"
 version := "0.0.1-SNAPSHOT"
 scalaVersion in ThisBuild := "2.11.11"
 
+publishMavenStyle := true
+
 resolvers in ThisBuild ++= Seq( "Sonatype releases" at "https://oss.sonatype.org/content/repositories/releases",
                                 "Spray IO Repository" at "http://repo.spray.io/",
                                 "Maven Central" at "https://repo1.maven.org/maven2/",
@@ -17,5 +19,5 @@ lazy val model = ( project in file( "model" ) )
 
 lazy val ngramExtractor = ( project in file( "ngram-extractor" ) )
                                     .dependsOn( model )
-                                    .settings( libraryDependencies ++= spark ++ opennlp )
+                                    .settings( libraryDependencies ++= spark ++ opennlp ++ drools ++ kie )
 //@formatter:off

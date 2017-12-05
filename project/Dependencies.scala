@@ -6,7 +6,7 @@ object Dependencies {
     val slf4jVersion = "1.7.5"
     val logbackVersion = "1.1.7"
     val sparkVersion = "2.2.0"
-    val droolsVersion = "7.4.1.Final"
+    val kiegroupVersion = "7.4.1.Final"
     val betterFilesVersion = "2.16.0"
     val opennlpVersion = "1.8.3"
 
@@ -17,11 +17,12 @@ object Dependencies {
 
     val spark = Seq( "org.apache.spark" %% "spark-core" % sparkVersion % "provided" )
 
-    val drools = Seq( "org.drools" % "drools-core" % droolsVersion,
-                      "org.drools" % "drools-compiler" % droolsVersion )
+    val drools = Seq( "org.drools" % "drools-core" % kiegroupVersion,
+                      "org.drools" % "drools-compiler" % kiegroupVersion )
 
-    val kieAPI = Seq( "org.kie" % "kie-api" % droolsVersion,
-                      "org.kie" % "kie-internal" % droolsVersion )
+    val kie = Seq( "org.kie" % "kie-api" % kiegroupVersion,
+                      "org.kie" % "kie-internal" % kiegroupVersion,
+                      "org.kie" % "kie-ci" % kiegroupVersion )
 
     val opennlp = Seq( "org.apache.opennlp" % "opennlp-tools" % opennlpVersion )
 
