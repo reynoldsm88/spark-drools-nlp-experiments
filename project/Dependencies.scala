@@ -9,6 +9,7 @@ object Dependencies {
     val kiegroupVersion = "7.4.1.Final"
     val betterFilesVersion = "2.16.0"
     val opennlpVersion = "1.8.3"
+    val hadoopVersion = "2.7.4"
 
 
     val slf4j = Seq( "org.slf4j" % "slf4j-api" % slf4jVersion )
@@ -21,10 +22,14 @@ object Dependencies {
                       "org.drools" % "drools-compiler" % kiegroupVersion )
 
     val kie = Seq( "org.kie" % "kie-api" % kiegroupVersion,
-                      "org.kie" % "kie-internal" % kiegroupVersion,
-                      "org.kie" % "kie-ci" % kiegroupVersion )
+                   "org.kie" % "kie-internal" % kiegroupVersion,
+                   "org.kie" % "kie-ci" % kiegroupVersion )
 
     val opennlp = Seq( "org.apache.opennlp" % "opennlp-tools" % opennlpVersion )
 
-    val betterFiles = Seq( "com.github.pathikrit" %% "better-files" % betterFilesVersion )
+    // forgot why i had this but i don't want to throw it away
+    //    val betterFiles = Seq( "com.github.pathikrit" %% "better-files" % betterFilesVersion )
+
+    val hadoop = Seq( "org.apache.hadoop" % "hadoop-hdfs" % hadoopVersion % "provided",
+                      "org.apache.hadoop" % "hadoop-client" % hadoopVersion % "provided" )
 }

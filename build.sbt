@@ -19,5 +19,5 @@ lazy val model = ( project in file( "model" ) )
 
 lazy val ngramExtractor = ( project in file( "ngram-extractor" ) )
                                     .dependsOn( model )
-                                    .settings( libraryDependencies ++= spark ++ opennlp ++ drools ++ kie )
+                                    .settings( libraryDependencies ++= spark ++ opennlp ++ drools ++ kie ++ hadoop )
 //@formatter:off
