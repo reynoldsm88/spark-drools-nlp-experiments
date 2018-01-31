@@ -10,6 +10,7 @@ object Dependencies {
     val betterFilesVersion = "2.16.0"
     val opennlpVersion = "1.8.3"
     val hadoopVersion = "2.7.4"
+    val scalaTestVersion = "3.0.4"
 
 
     val slf4j = Seq( "org.slf4j" % "slf4j-api" % slf4jVersion )
@@ -30,6 +31,12 @@ object Dependencies {
     // forgot why i had this but i don't want to throw it away
     //    val betterFiles = Seq( "com.github.pathikrit" %% "better-files" % betterFilesVersion )
 
-    val hadoop = Seq( "org.apache.hadoop" % "hadoop-hdfs" % hadoopVersion % "provided",
-                      "org.apache.hadoop" % "hadoop-client" % hadoopVersion % "provided" )
+    val hadoop = Seq( "org.apache.hadoop" % "hadoop-common" % hadoopVersion,
+                      "org.apache.hadoop" % "hadoop-hdfs" % hadoopVersion,
+                      "org.apache.hadoop" % "hadoop-client" % hadoopVersion )
+
+    val hadoopTest = Seq( "org.apache.hadoop" % "hadoop-hdfs" % hadoopVersion % "test" classifier "tests",
+                          "org.apache.hadoop" % "hadoop-common" % hadoopVersion % "test" classifier "tests" )
+
+    val scalaTest = Seq( "org.scalatest" %% "scalatest" % scalaTestVersion % "test" )
 }
