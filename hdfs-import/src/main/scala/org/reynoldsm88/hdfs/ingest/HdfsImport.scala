@@ -1,8 +1,8 @@
 package org.reynoldsm88.hdfs.ingest
 
 import org.apache.hadoop.conf.Configuration
-import org.apache.hadoop.fs.{FileSystem, Path}
-import org.reynoldsm88.hdfs.utils.HDFS
+import org.apache.hadoop.fs.FileSystem
+import org.reynoldsm88.hdfs.common.HDFS
 
 object HdfsImport {
 
