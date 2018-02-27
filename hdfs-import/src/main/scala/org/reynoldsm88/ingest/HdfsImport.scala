@@ -1,8 +1,12 @@
-package org.reynoldsm88.hdfs.ingest
+package org.reynoldsm88.ingest
 
 import org.apache.hadoop.conf.Configuration
 import org.apache.hadoop.fs.FileSystem
-import org.reynoldsm88.hdfs.common.HDFS
+import org.reynoldsm88.hadoop.common.HDFS
+
+class HdfsImport( val args : Array[ String ] ) {
+
+}
 
 object HdfsImport {
 

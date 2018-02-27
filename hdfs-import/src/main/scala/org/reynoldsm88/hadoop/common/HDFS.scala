@@ -1,4 +1,4 @@
-package org.reynoldsm88.hdfs.common
+package org.reynoldsm88.hadoop.common
 
 import java.io.OutputStreamWriter
 
