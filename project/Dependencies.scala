@@ -25,9 +25,16 @@ object Dependencies {
     val drools = Seq( "org.drools" % "drools-core" % kiegroupVersion,
                       "org.drools" % "drools-compiler" % kiegroupVersion )
 
+    val droolsTest = Seq( "org.drools" % "drools-core" % kiegroupVersion % "test",
+                      "org.drools" % "drools-compiler" % kiegroupVersion % "test" )
+
     val kie = Seq( "org.kie" % "kie-api" % kiegroupVersion,
                    "org.kie" % "kie-internal" % kiegroupVersion,
                    "org.kie" % "kie-ci" % kiegroupVersion )
+
+    val kieTest = Seq( "org.kie" % "kie-api" % kiegroupVersion % "test",
+                       "org.kie" % "kie-internal" % kiegroupVersion % "test",
+                       "org.kie" % "kie-ci" % kiegroupVersion % "test" )
 
     val opennlp = Seq( "org.apache.opennlp" % "opennlp-tools" % opennlpVersion )
 

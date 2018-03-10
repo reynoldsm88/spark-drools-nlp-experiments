@@ -13,16 +13,23 @@ resolvers in ThisBuild ++= Seq( "Sonatype releases" at "https://oss.sonatype.org
                                 "Maven Central" at "https://repo1.maven.org/maven2/",
                                 "Typesafe repository" at "http://repo.typesafe.com/typesafe/releases/" )
 //@formatter:off
-lazy val root = ( project in file( "." ) ).aggregate( hdfsImport, model, ngramExtractor )
+lazy val root = ( project in file( "." ) ).aggregate( model, ngramExtractor, rules )
 
-lazy val model = project in file( "model" )
+lazy val model = ( project in file( "model" ) ).settings( libraryDependencies ++= scalaTest  )
+
+
+lazy val rules = ( project in file( "ngram-rules" ) )
+                                    .dependsOn( model )
+                                    .settings( libraryDependencies ++= kieTest ++ droolsTest ++ scalaTest  )
+//                                    .disablePlugins( sbtassembly.AssemblyPlugin )
 
 lazy val ngramExtractor = ( project in file( "ngram-extractor" ) )
                                     .dependsOn( model )
                                     .settings( libraryDependencies ++= spark ++ opennlp ++ drools ++ kie ++ sparkTestBase ++ scalaTest )
 
-lazy val hdfsImport = ( project in file( "hdfs-import" ) )
-                                    .dependsOn( model )
-                                    .settings( libraryDependencies ++= hadoop ++ scalaTest ++ hadoopTest  )
+// TODO - I don't think i need this anymore
+//lazy val hdfsImport = ( project in file( "hdfs-import" ) )
+//                                    .dependsOn( model )
+//                                    .settings( libraryDependencies ++= hadoop ++ scalaTest ++ hadoopTest  )
 
 //@formatter:off

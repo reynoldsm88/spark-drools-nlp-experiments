@@ -7,5 +7,6 @@ enablePlugins( JavaAppPackaging )
 assemblyMergeStrategy in assembly := {
     case PathList( "META-INF", "MANIFEST.MF" ) => MergeStrategy.discard
     case PathList( "reference.conf" ) => MergeStrategy.concat
-    case x => MergeStrategy.first
+    case PathList( "kie.conf" ) => MergeStrategy.last
+    case x => MergeStrategy.last
 }
