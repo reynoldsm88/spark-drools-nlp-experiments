@@ -3,7 +3,7 @@ package org.reynoldsm88.ngrams;
 import java.util.List;
 import java.util.regex.Pattern;
 import org.reynoldsm88.nlp.model.BiGram;
-import org.reynoldsm88.nlp.model.BiGramInstance;
+import org.reynoldsm88.nlp.model.BiGramOccurrence;
 import org.reynoldsm88.nlp.model.Sentence;
 
 rule "Disregard sentences that have http links"
@@ -11,7 +11,6 @@ rule "Disregard sentences that have http links"
     when
         $sentence : Sentence( text.matches( ".*http(s)?://.*" ) )
     then
-        System.out.println( "removing sentences becuase of http links " + $sentence );
         delete( $sentence );
 end
 
@@ -19,7 +18,7 @@ rule "Create bi-gram instances for sentences"
     when
         $sentence : Sentence()
     then
-        for( BiGramInstance b : $sentence.biGrams() ){
+        for( BiGramOccurrence b : $sentence.biGrams() ){
             insert( b );
         }
         delete( $sentence );
@@ -27,10 +26,9 @@ end
 
 rule "Count bi-grams"
     when
-        BiGramInstance( $root : root, $stem : stem )
+        BiGramOccurrence( $root : root, $stem : stem )
         not BiGram( root == $root, $stem == stem )
-        accumulate( BiGramInstance( root == $root ); $rootOccurrenceCount : count() )
-        accumulate( BiGramInstance( root == $root, stem == $stem ); $instanceCount : count() )
+        accumulate( BiGramOccurrence( root == $root, stem == $stem ); $count : count() )
     then
-        insert( new BiGram( $root, $stem, $rootOccurrenceCount, $instanceCount ) );
+        insert( new BiGram( $root, $stem, $count ) );
 end

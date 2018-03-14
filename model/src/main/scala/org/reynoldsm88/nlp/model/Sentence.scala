@@ -9,20 +9,20 @@ import scala.collection.mutable.ListBuffer
 @BeanInfo
 case class Sentence( id : String, text : String ) {
 
-    def biGrams( ) : JList[ BiGramInstance ] = {
+    def biGrams( ) : JList[ BiGramOccurrence ] = {
         biGramsScala().asJava
     }
 
-    def biGramsScala( ) : List[ BiGramInstance ] = {
+    def biGramsScala( ) : List[ BiGramOccurrence ] = {
         def gramSize = 2
 
         val tokens : List[ String ] = text.split( " " ).toList
-        val bigrams : ListBuffer[ BiGramInstance ] = new ListBuffer[ BiGramInstance ]()
+        val bigrams : ListBuffer[ BiGramOccurrence ] = new ListBuffer[ BiGramOccurrence ]()
 
-        for ( i <- 0 to ( tokens.size - gramSize - 1 ) ) {
+        for ( i <- 0 until ( tokens.size - gramSize ) ) {
             val root = tokens.slice( i, i + gramSize ).mkString( " " )
             val stem = tokens( i + gramSize )
-            bigrams += BiGramInstance( UUID.randomUUID().toString, root, stem )
+            bigrams += BiGramOccurrence( root, stem )
         }
 
         bigrams.toList
