@@ -1,25 +1,24 @@
 #!/bin/bash
 
-#./run.sh ~/tools/spark ~/tools/data /Users/michael/workspace/spark-drools-experments/ngram-extractor/target/scala-2.11/ngram-extractor-assembly-0.0.1-SNAPSHOT.jar
-
 # consider using this as shorthand way of getting the IP address
 # I only need this because Docker for Mac networking is a real PITA
 # ifconfig | grep inet | grep 192.* | awk '{print $2}'
 
 SPARK_HOME=$1
-SPARK_APPS_DIR=$2
-APP=$3
+SPARK_APP=$2
+JOB_CONFIG=$3
 
-echo "Local SPARK_HOME is $SPARK_HOME"
-echo "Deploying application to Docker shared volume $APP"
-cp $APP $SPARK_APPS_DIR
 
 $SPARK_HOME/bin/spark-submit \
-    --class org.reynoldsm88.ngram.extractor.NgramExtractor \
-    --master spark://<PUT_IP_HERE>:7077 \
+    --class org.reynoldsm88.ngram.extractor.Main \
+    --master spark://Michaels-MacBook-Pro-3.local:7077 \
     --deploy-mode cluster \
     --supervise \
-    /etc/spark/apps/ngram-extractor-assembly-0.0.1-SNAPSHOT.jar
+    --executor-memory 4000m \
+    --driver-memory 4000m \
+    /Users/michael/workspace/spark-drools-experments/ngram-extractor/target/scala-2.11/ngram-extractor-assembly-0.0.1-SNAPSHOT.jar \
+    /Users/michael/workspace/spark-drools-experments/ngram-extractor/src/test/resources/config/test-job-config.json
+
 
 # @michael - saving this because eventually I would like to use the REST client instead of spark-submit
 #            for some reason it doesn't work the same as spark-submit :(

@@ -3,7 +3,7 @@ package org.reynoldsm88.ngram.sources
 import org.apache.spark.rdd.RDD
 
 /**
-  * Parser for turning a google hangouts conversation into
+  * Parser for turning a google hangouts conversation
   *
   * @param username - param for filtering for only one specific user
   */

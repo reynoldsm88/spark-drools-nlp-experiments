@@ -1,0 +1,17 @@
+{
+  "name": "hangouts-ngram-extractor",
+  "rules": {
+    "group": "org.reynoldsm88",
+    "artifact": "ngram-rules",
+    "version": "0.0.1-SNAPSHOT"
+  },
+  "sources": [
+    {
+      "metadata": {
+        "username": "Michael Reynolds"
+      },
+      "resourceType": "hangouts",
+      "uri": "hdfs://localhost:9000/etc/data/hangouts/chris-hangouts.txt"
+    }
+  ]
+}

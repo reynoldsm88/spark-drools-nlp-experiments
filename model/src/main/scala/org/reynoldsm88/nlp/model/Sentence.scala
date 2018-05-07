@@ -1,6 +1,6 @@
 package org.reynoldsm88.nlp.model
 
-import java.util.{UUID, List => JList}
+import java.util.{List => JList}
 
 import scala.beans.BeanInfo
 import scala.collection.JavaConverters._

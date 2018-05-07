@@ -1,4 +1,3 @@
-import sbt.Keys._
 import sbt._
 
 object Dependencies {
@@ -12,6 +11,7 @@ object Dependencies {
     val opennlpVersion = "1.8.3"
     val hadoopVersion = "2.7.4"
     val scalaTestVersion = "3.0.4"
+    val gensonVersion = "1.4"
 
 
     val slf4j = Seq( "org.slf4j" % "slf4j-api" % slf4jVersion )
@@ -26,7 +26,7 @@ object Dependencies {
                       "org.drools" % "drools-compiler" % kiegroupVersion )
 
     val droolsTest = Seq( "org.drools" % "drools-core" % kiegroupVersion % "test",
-                      "org.drools" % "drools-compiler" % kiegroupVersion % "test" )
+                          "org.drools" % "drools-compiler" % kiegroupVersion % "test" )
 
     val kie = Seq( "org.kie" % "kie-api" % kiegroupVersion,
                    "org.kie" % "kie-internal" % kiegroupVersion,
@@ -38,9 +38,6 @@ object Dependencies {
 
     val opennlp = Seq( "org.apache.opennlp" % "opennlp-tools" % opennlpVersion )
 
-    // forgot why i had this but i don't want to throw it away
-    //    val betterFiles = Seq( "com.github.pathikrit" %% "better-files" % betterFilesVersion )
-
     val hadoop = Seq( "org.apache.hadoop" % "hadoop-common" % hadoopVersion,
                       "org.apache.hadoop" % "hadoop-hdfs" % hadoopVersion,
                       "org.apache.hadoop" % "hadoop-client" % hadoopVersion )
@@ -49,4 +46,7 @@ object Dependencies {
                           "org.apache.hadoop" % "hadoop-common" % hadoopVersion % "test" classifier "tests" )
 
     val scalaTest = Seq( "org.scalatest" %% "scalatest" % scalaTestVersion % "test" )
+
+    val gensonJSON = Seq( "com.owlike" % "genson-scala_2.11" % gensonVersion )
+
 }

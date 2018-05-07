@@ -6,7 +6,7 @@ import org.reynoldsm88.nlp.model.BiGram;
 import org.reynoldsm88.nlp.model.BiGramOccurrence;
 import org.reynoldsm88.nlp.model.Sentence;
 
-rule "Disregard sentences that have http links"
+rule "Ignore sentences that have http links"
     salience 100
     when
         $sentence : Sentence( text.matches( ".*http(s)?://.*" ) )
@@ -21,6 +21,7 @@ rule "Create bi-gram instances for sentences"
         for( BiGramOccurrence b : $sentence.biGrams() ){
             insert( b );
         }
+
         delete( $sentence );
 end
 
@@ -30,5 +31,6 @@ rule "Count bi-grams"
         not BiGram( root == $root, $stem == stem )
         accumulate( BiGramOccurrence( root == $root, stem == $stem ); $count : count() )
     then
-        insert( new BiGram( $root, $stem, $count ) );
+        BiGram b = new BiGram( $root, $stem, $count );
+        insert( b );
 end
