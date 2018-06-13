@@ -1,0 +1,8 @@
+package org.reynoldsm88.morph.pos.french;
+
+rule "Place holder"
+    when
+        String()
+    then
+        System.out.println( "Hello world" );
+end

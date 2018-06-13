@@ -18,16 +18,20 @@ resolvers in ThisBuild ++= Seq( "Sonatype releases" at "https://oss.sonatype.org
                                 "Maven Central" at "https://repo1.maven.org/maven2/",
                                 "Typesafe repository" at "http://repo.typesafe.com/typesafe/releases/" )
 //@formatter:off
-lazy val root = ( project in file( "." ) ).aggregate( model, ngramExtractor, rules )
+lazy val root = ( project in file( "." ) ).aggregate( model, ngramExtractor, ngramRules, morphFrenchRules )
 
 lazy val model = ( project in file( "model" ) ).settings( libraryDependencies ++= scalaTest )
 
 
-lazy val rules = ( project in file( "ngram-rules" ) )
+lazy val ngramRules = ( project in file( "ngram-rules" ) )
+                                    .dependsOn( model )
+                                    .settings( libraryDependencies ++= kieTest ++ droolsTest ++ scalaTest  )
+
+lazy val morphFrenchRules = ( project in file( "morph-rules-french" ) )
                                     .dependsOn( model )
                                     .settings( libraryDependencies ++= kieTest ++ droolsTest ++ scalaTest  )
 
 lazy val ngramExtractor = ( project in file( "ngram-extractor" ) )
-                                    .dependsOn( model, rules )
+                                    .dependsOn( model, ngramRules )
                                     .settings( libraryDependencies ++= spark ++ opennlp ++ drools ++ kie ++ sparkTestBase ++ scalaTest ++ gensonJSON )
 //@formatter:off
