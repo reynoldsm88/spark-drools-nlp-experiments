@@ -33,5 +33,5 @@ lazy val morphFrenchRules = ( project in file( "morph-rules-french" ) )
 
 lazy val ngramExtractor = ( project in file( "ngram-extractor" ) )
                                     .dependsOn( model, ngramRules )
-                                    .settings( libraryDependencies ++= spark ++ opennlp ++ drools ++ kie ++ sparkTestBase ++ scalaTest ++ gensonJSON )
+                                    .settings( libraryDependencies ++= spark ++ opennlp ++ drools ++ kie ++ sparkTestBase ++ scalaTest ++ gensonJSON ++ okhttp )
 //@formatter:off

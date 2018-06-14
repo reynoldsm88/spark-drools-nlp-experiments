@@ -12,6 +12,7 @@ object Dependencies {
     val hadoopVersion = "2.7.4"
     val scalaTestVersion = "3.0.4"
     val gensonVersion = "1.4"
+    val okhttpVersion = "3.10.0"
 
 
     val slf4j = Seq( "org.slf4j" % "slf4j-api" % slf4jVersion )
@@ -48,5 +49,7 @@ object Dependencies {
     val scalaTest = Seq( "org.scalatest" %% "scalatest" % scalaTestVersion % "test" )
 
     val gensonJSON = Seq( "com.owlike" % "genson-scala_2.11" % gensonVersion )
+
+    val okhttp = Seq( "com.squareup.okhttp3" % "okhttp" % okhttpVersion )
 
 }

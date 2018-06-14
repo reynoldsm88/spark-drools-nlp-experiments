@@ -16,13 +16,20 @@ class NgramExtractor( val jobConfig : JobConfig, val spark : SparkContext ) {
         KieServices.Factory.get.newKieClasspathContainer().getKieBase
     }
 
+    // TODO - this method is awful need to refactor
     def loadSources( config : JobConfig ) : RDD[ String ] = {
         var lines : RDD[ String ] = spark.emptyRDD[ String ]
         jobConfig.sources.map( sourceDescr => {
+            // TODO refactor to use pattern matching
             if ( sourceDescr.resourceType == "hangouts" ) {
                 println( "Using hangouts source : " + sourceDescr.uri )
                 val hangoutsSrc = new Hangouts( Some( sourceDescr.metadata( "username" ) ) )
                 lines = spark.union( lines, hangoutsSrc.lines( spark.textFile( sourceDescr.uri ) ) )
+            }
+            if ( sourceDescr.resourceType == "plaintext" ) {
+                if ( sourceDescr.uri.startsWith( "http" ) ) {
+                    
+                }
             }
         } )
 
