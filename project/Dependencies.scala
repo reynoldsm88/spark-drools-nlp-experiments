@@ -12,6 +12,7 @@ object Dependencies {
     val hadoopVersion = "2.7.4"
     val scalaTestVersion = "3.0.4"
     val gensonVersion = "1.4"
+    val scalatraVersion = "2.5.4"
 
 
     val slf4j = Seq( "org.slf4j" % "slf4j-api" % slf4jVersion )
@@ -49,4 +50,10 @@ object Dependencies {
 
     val gensonJSON = Seq( "com.owlike" % "genson-scala_2.11" % gensonVersion )
 
+    // TODO - fix versions later
+    val scalatra = Seq( "org.scalatra" %% "scalatra" % scalatraVersion,
+                        "org.scalatra" %% "scalatra-scalatest" % scalatraVersion % "test",
+                        "ch.qos.logback" % "logback-classic" % "1.2.3" % "runtime",
+                        "org.eclipse.jetty" % "jetty-webapp" % "9.2.19.v20160908",
+                        "javax.servlet" % "javax.servlet-api" % "3.1.0" % "provided" )
 }

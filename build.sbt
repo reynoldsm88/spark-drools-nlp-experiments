@@ -13,12 +13,14 @@ javaOptions ++= Seq( "-Xms512M", "-Xmx2048M", "-XX:MaxMetaspace=1024M", "-XX:+CM
 publishMavenStyle := true
 
 resolvers += Resolver.sbtPluginRepo( "releases" )
+resolvers += Classpaths.typesafeReleases
 resolvers in ThisBuild ++= Seq( "Sonatype releases" at "https://oss.sonatype.org/content/repositories/releases",
                                 "Spray IO Repository" at "http://repo.spray.io/",
                                 "Maven Central" at "https://repo1.maven.org/maven2/",
                                 "Typesafe repository" at "http://repo.typesafe.com/typesafe/releases/" )
+
 //@formatter:off
-lazy val root = ( project in file( "." ) ).aggregate( model, ngramExtractor, ngramRules, morphFrenchRules )
+lazy val root = ( project in file( "." ) ).aggregate( model, ngramExtractor, ngramRules, morphFrenchRules, minishiftPoc )
 
 lazy val model = ( project in file( "model" ) ).settings( libraryDependencies ++= scalaTest )
 
@@ -34,4 +36,8 @@ lazy val morphFrenchRules = ( project in file( "morph-rules-french" ) )
 lazy val ngramExtractor = ( project in file( "ngram-extractor" ) )
                                     .dependsOn( model, ngramRules )
                                     .settings( libraryDependencies ++= spark ++ opennlp ++ drools ++ kie ++ sparkTestBase ++ scalaTest ++ gensonJSON )
+
+val minishiftPoc = ( project in file( "minishift-poc" ) )
+                                    .dependsOn( model, ngramRules )
+                                    .settings( libraryDependencies ++= spark ++ scalatra )
 //@formatter:off
